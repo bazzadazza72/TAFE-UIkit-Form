@@ -4,7 +4,10 @@
         <title>HTML Form</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-        <link rel="stylesheet" type="text/css" href="./styles.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="./css/datepickr.css" />
+        
     </head>
     <body>
         <script type="text/javascript">
@@ -22,12 +25,13 @@
             }
             window.onload = init;
         </script>
+        
         <h1 class="title">HTML Form</h1>
         <form class="title" action="form3.html">
             <fieldset class="frm1">
                 <legend>Enter tip details</legend>
                 <label for="incidentdate">Date of incident: </label>
-                <input type="text" id="incidentdate" name="incidentdate"><br>
+                <input id="datepick" size="25" /><br>
                 <label for="tipdeets">Tip details: </label>
                 <textarea name="tipdeets" rows="5" cols="30"></textarea><br>
                 <label for="suppfile">Attach supporting file: </label>
@@ -49,5 +53,9 @@
             </fieldset><br>
             <input type="submit" value="Submit">
         </form>
+        <script src="./js/datepickr.js"></script>
+        <script type="text/javascript">
+            new datepickr('datepick');
+        </script>
     </body>
 </html>

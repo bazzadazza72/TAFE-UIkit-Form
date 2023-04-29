@@ -4,32 +4,42 @@
         <title>HTML Form</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-        <link rel="stylesheet" type="text/css" href="./styles.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
         <script type="text/javascript" src="./script.js"> </script> 
 
     </head>
-    <body>
+    <body onload="retrieveData()">
+        
         <h1 class="title">HTML Form</h1>
-        <form class="title" action="form2.html">
+        <form class="title" action="form2.html" autocomplete="off" novalidate onsubmit="return validateForm()">
             <fieldset class="frm1">
                 <legend>Create an account</legend>
                 <label for="username">Username:</label>
-                <input type="text" required pattern="[A-Za-z]{8,12}" id="username" name="username" onblur="return validateErrors('username', 'usernameError')"><br>
-                <span id="usernameError" style="display: none;"></span>
+                <input type="text" required pattern="[A-Za-z]{8,12}" id="username" name="username" title="Username must be at least 8 characters." onblur="return validateErrors('username', 'usernameError')">
+                <script>
+                    if (!("autofocus" in document.createElement("input"))) {
+                        document.getElementById("username").focus();
+                    }
+                </script> 
+                <span id="usernameError" style="display: none;"></span><br>
                 <label for="password">Password:</label>
-                <input type="text" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password" onblur="return validateErrors('password', 'passwordError')"><br>
+                <input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password" onblur="return validateErrors('password', 'passwordError')"><br>
                 <span id="passwordError" style="display: none;"></span>
             </fieldset><br>
             <fieldset class="frm2">
                 <legend>Personal information</legend>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="First and last name"><br>
+                <input type="text" required pattern="^(?=.{1,80}$)([A-Z][\w'-]*)(\s[A-Z][\w'-]*){0,2}$" id="name" name="name" placeholder="First and last name" onblur="return validateErrors('name', 'nameError')"><br>
+                <span id="nameError" style="display: none;"></span>
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address"><br>
+                <input type="text" required id="address" name="address" placeholder="First and last name" onblur="return validateErrors('address', 'addressError')"><br>
+                <span id="addressError" style="display: none;">Test</span>
                 <label for="suburb">Suburb:</label>
-                <input type="text" id="suburb" name="suburb"><br>
+                <input type="text" required pattern="^[A-Z][a-zA-Z]{0,49}$" id="suburb" name="suburb" onblur="return validateErrors('suburb', 'suburbError')"><br><br>
+                <span id="suburbError" style="display: none;"></span>
                 <label for="city">City:</label>
-                <input type="text" id="city" name="city"><br><br>
+                <input type="text" required pattern="^[A-Z][a-zA-Z\s\-]{0,49}" id="city" name="city" onblur="return validateErrors('city', 'cityError')"><br><br>
+                <span id="cityError" style="display: none;"></span>
                 <label for="country">Choose a country:</label>
                 <select id="country" oninput="changeState()">
                 <option value="NA">Select a country</option>
@@ -49,17 +59,19 @@
                 <input type="text" required pattern="[\(]\d{2}[\)]-\d{4}[\-]\d{4}" id="phone" name="phone" onblur="return validateErrors('phone', 'phoneError')" placeholder="Eg. (12)-3456-7890"><br>
                 <span id="phoneError" style="display: none;"></span>
                 <label for="website">Website:</label>
-                <input type="text" id="website" name="website"><br>
+                <input type="text" required pattern="[^\s/$.?#].[^\s]*$" id="website" name="website" onblur="return validateErrors('website', 'websiteError')"><br>
+                <span id="websiteError" style="display: none;"></span>
                 <label for="age">Age:</label>
                 <input type="text" required pattern="[0-9]{1,3}" id="age" name="age" onblur="return validateErrors('age', 'ageError')"><br>
                 <span id="ageError" style="display: none;"></span>
                 <p>
                     Spam check:<br>
-                    What colour is black? (choose a colour): </p><input type="color" value="#740505">
+                    What colour is black? (choose a colour): </p><input type="color" id="color" value="#740505">
                 </p>
             </fieldset><br>
-            
-            <input type="submit" value="Submit" onclick="validateForm()">
+            <input type="submit" value="Submit">
         </form>
     </body>
 </html>
+
+<!--pattern="^\d+\s[a-zA-Z0-9\s]+\s?(\/\s?[a-zA-Z0-9\s]+)?$"-->

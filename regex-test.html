@@ -10,7 +10,7 @@
         <h1 class="title">HTML Form</h1>
         <form class="title">
             <label for="password">Test data:</label>
-            <input type="text" required pattern="^[a-zA-Z0-9/]{0,100}$"><br>
+            <input type="text" required pattern="^(?=.{1,80}$)([A-Z][\w'-]*)(\s[A-Z][\w'-]*){0,2}$"><br>
             <input type="submit" value="Submit">
         </form>
     </body>

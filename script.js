@@ -4,6 +4,10 @@ File: script.js
 Developed by Bailey CAMP on 29/04/2023
 */
 
+var myInterval = setInterval(saveData, 5000);
+
+var checkColor = "#FF9999";
+
 function validateErrors(formField, errorField)
 {
     //create a variable for the form field
@@ -18,9 +22,8 @@ function validateErrors(formField, errorField)
         theField.style.background ='#FF9999';
         //displays the <span> containing the error msg
         theError.style.display = "block";
-        //displays the error message by reading the HTML title and writing it to the
-        //span
-        theError.innerHTML= theField.title;
+        //displays the error message by reading the HTML title and writing it to the <span>
+        theError.innerHTML = theField.title;
         //set focus to field
         theField.focus();
         return false;
@@ -34,6 +37,56 @@ function validateErrors(formField, errorField)
         return true;
     }
 }
+
+/*
+function saveData(){  
+    var username = document.querySelector("#username").value;   
+    var name = document.querySelector("#name").value
+    var address = document.querySelector("#address").value;  
+    var suburb = document.querySelector("#suburb").value;  
+    var city = document.querySelector("#city").value;  
+    var country = document.querySelector("#country").value;  
+    var state = document.querySelector("#state").value; 
+    var website = document.querySelector("#email").value; 
+    var phone = document.querySelector("#phone").value;      
+    var email = document.querySelector("#website").value;
+    var age = document.querySelector("#age").value;        
+    localStorage.setItem('username', username);
+    localStorage.setItem('name', name);     
+    localStorage.setItem('address', address)
+    localStorage.setItem('suburb', suburb);  
+    localStorage.setItem('email', email);  
+    localStorage.setItem('city', city)
+    localStorage.setItem('country', country);  
+    localStorage.setItem('state', state);  
+    localStorage.setItem('phone', phone)
+    localStorage.setItem('website', website);  
+    localStorage.setItem('age', age);  
+}
+
+function retrieveData(){      
+    var username = localStorage.getItem("username");
+    var name = localStorage.getItem("name");
+    var address = localStorage.getItem("address");
+    var suburb = localStorage.getItem("suburb");
+    var city = localStorage.getItem("city");
+    var country = localStorage.getItem("country");
+    var state = localStorage.getItem("state");
+    var phone = localStorage.getItem("phone");
+    var website = localStorage.getItem("website");
+    var age = localStorage.getItem("age");
+    document.querySelector("#username").value = username;   
+    document.querySelector("#name").value = name;
+    document.querySelector("#address").value = address;  
+    document.querySelector("#suburb").value = suburb;  
+    document.querySelector("#city").value = city;  
+    document.querySelector("#country").value = country;  
+    document.querySelector("#state").value = state;  
+    document.querySelector("#phone").value = phone;
+    document.querySelector("#website").value = website;   
+    document.querySelector("#age").value = age;   
+}
+*/
 
 function changeState() {
     // store a reference to country and state select lists
@@ -83,140 +136,17 @@ function changeState() {
 
 function validateForm() {
     // Declares the variables from the HTML document needed in calculating logic and error
-    var username = document.getElementById("pcode");
-    var password = document.getElementById("email");
-    var name = document.getElementById("creditcard");
-    var address = document.getElementById("cardnum");
-    var suburb = document.getElementById("cvc");
-    var city = document.getElementById("cardexpm");
-    var country = document.getElementById("cardexpy");
-    var state = document.getElementById("fnameerr");
-    var pcode = document.getElementById("lnameerr");
-    var email = document.getElementById("pcodeerr");
-    var phone = document.getElementById("emailerr");
-    var website = document.getElementById("crediterr");
-    var age = document.getElementById("cardnumerr");
-    var color = document.getElementById("cvcerr");
-    fnameerr.innerHTML = "";
-    lnameerr.innerHTML = "";
-    emailerr.innerHTML = "";
-    pcodeerr.innerHTML = "";
-    crediterr.innerHTML = "";
-    cardnumerr.innerHTML = "";
-    cvcerr.innerHTML = "";
-    experr.innerHTML = "";
-    var cmonth = "0" + month.getMonth();
-    
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
 
     // Checks if the first and last name fields are empty
-    if (fname.value=="") {
-        fnameerr.style.color="red";
-        fnameerr.innerHTML = "First name is required";
-        fname.focus();
+    if (username.style.color == checkColor) {
+        alert("This works!");
         return false;
     }
-    if (lname.value=="") {
-        lnameerr.style.color="red";
-        lnameerr.innerHTML = "Last name is required";
-        lname.focus();
+    if (password.style.color == checkColor) {
+        alert("This works!");
         return false;
-    }
-    
-    // Checks if the postcode is four characters and it is a number
-    if (pcode.value.length == 4) {
-        if (isNaN(pcode.value)) {
-            pcodeerr.style.color="red";
-            pcodeerr.innerHTML = "Postcode is not a number";
-            pcode.focus();
-            return false;
-        }
-    } else {
-        pcodeerr.style.color="red";
-        pcodeerr.innerHTML = "Postcode is required";
-        pcode.focus();
-        return false;
-    }
-
-    // Checks if the email is longer than eight characters and it includes @ and . symbols
-    if (email.value.length<8) {
-        emailerr.style.color="red";
-        emailerr.innerHTML = "Email is less than 8 characters";
-        email.focus();
-        return false;
-    } else {
-        if (email. value.indexOf("@")==-1) {
-            if (email.value.indexOf(".")==-1) {
-                emailerr.style.color="red";
-                emailerr.innerHTML = "Email is invalid.";
-                email.focus();
-                return false;
-            }
-        }
-    }
-
-    // Checks if the credit card type is not selected
-    if (creditcard.value=="unselected") {
-        crediterr.style.color="red";
-        crediterr.innerHTML = "You didn't select a card.";
-        creditcard.focus();
-        return false;
-    }
-    
-    // Checks if the credit card number is sixteen characters and it is a number
-    if (cardnum.value.length == 16) {
-        if (isNaN(cardnum.value)) {
-            cardnumerr.style.color="red";
-            cardnumerr.innerHTML = "Card number is invalid";
-            cardnum.focus();
-            return false;
-        }
-    } else {
-        cardnumerr.style.color="red";
-        cardnumerr.innerHTML = "Card number is required";
-        cardnum.focus();
-        return false;
-    }
-
-    // Checks if the CVC is three characters and it is a number
-    if (cvc.value.length == 3) {
-        if (isNaN(cvc.value)) {
-            cvcerr.style.color="red";
-            cvcerr.innerHTML = "CVC is invalid";
-            cvc.focus();
-            return false;
-        }
-    } else {
-        cvcerr.style.color="red";
-        cvcerr.innerHTML = "CVC is required";
-        cvc.focus();
-        return false;
-    }
-
-    // Checks if the card expiry month and year are before the current time
-    if (cardexpm.value=="MM") {
-        experr.style.color="red";
-        experr.innerHTML = "Card expiry month is empty";
-        cardexpm.focus();
-        
-        return false;
-    } else {
-        if (cardexpy.value < cmonth) {
-            experr.style.color="red";
-            experr.innerHTML = "Card has expired.";
-            cardexpm.focus();
-        }
-    }
-    if (cardexpy.value=="YYYY") {
-        experr.style.color="red";
-        experr.innerHTML = "Card expiry year is empty";
-        cardexpy.focus();
-        return false;
-    } else {
-        if (cardexpy.value == cyear.getFullYear()) {
-            experr.style.color="red";
-            experr.innerHTML = "Card has expired.";
-            cardexpy.focus();
-        }
     }
 
     // Alerts the user that their submission was correct.
@@ -224,4 +154,9 @@ function validateForm() {
     return true;
 }
     
-    
+function validatePostcode() {
+    var state = (document.getElementById("state").value);
+    switch (state.RegExp) {
+        
+    }
+}

@@ -38,6 +38,66 @@ function validateErrors(formField, errorField)
     }
 }
 
+function validatePostCode(formField, errorField) {
+
+    //create a variable for the form field.
+    theField = document.getElementById(formField);
+    //create a variable for the error field.
+    theError = document.getElementById(errorField);
+
+    if (formField == "pcode") {
+        var state = document.getElementById("state").value;
+
+        switch (state) {
+        case "SA":
+            var thePattern = new RegExp(/^5[0-9]{3}$/);
+            break;
+        case "NSW":
+            var thePattern = new RegExp(/^2[0-9]{3}$/);
+            break;
+        case "VIC":
+            var thePattern = new RegExp(/^3[0-9]{3}$/);
+            break;
+        case "QLD":
+            var thePattern = new RegExp(/^4[0-9]{3}$/);
+            break;
+        case "TAZ":
+            var thePattern = new RegExp(/^7[0-9]{3}$/);
+            break;
+        case "WA":
+            var thePattern = new RegExp(/^6[0-9]{3}$/);
+            break;
+        case "ACT":
+            var thePattern = new RegExp(/^2[0-9]{3}$/);
+            break;
+        case "NT":
+            var thePattern = new RegExp(/^0[0-9]{3}$/);
+            break;
+        default:
+            break;
+        }
+    } else {
+        // the new pattern is created using the input code for the postcode
+        var thePattern = new RegExp("^" + formField.pattern + "$");
+    }
+    //test input field data with regex pattern from the validated postcode()
+    if (!thePattern.test(theField.value)) {
+        theField.style.background = '#FF9999'; //Turns background red.
+        theError.style.display = "block"; //displays span.
+        theError.innerHTML = "Please use only 4 numbers, and ensure the postcode is valid for your state."; //displays warning on span tag.
+        //theField.focus(); // puts focus on the input.
+        return false;
+    } else {
+        theField.style.background = '#CCFFCC'; //turns background green
+        theError.style.display = "none"; // removes error span.
+        return true;
+
+    }
+
+}
+
+
+
 /*
 function saveData(){  
     var username = document.querySelector("#username").value;   
@@ -98,7 +158,7 @@ function changeState() {
     if(country === 'AU') {
         state.innerHTML = '';
         
-        state.options[state.options.length] = new Option('Select state','0');
+        state.options[state.options.length] = new Option('Select a state','0');
         state.options[state.options.length] = new Option('South Australia', 'SA');
         state.options[state.options.length] = new Option('New South Wales', 'NSW');
         state.options[state.options.length] = new Option('Victoria', 'VIC');
@@ -108,55 +168,55 @@ function changeState() {
         state.options[state.options.length] = new Option('Australian Capital Territory', 'ACT');
         state.options[state.options.length] = new Option('Northern Territory','NT');
     }
+    if (document.getElementById("country").value != '0') {
+        document.getElementById("country").style.backgroundColor = '#CCFFCC';
+    } else {
+        document.getElementById("country").style.backgroundColor = '#FF9999';
+    }
+}
 
-    // if country selected is New Zealand
-    // populate state select list with New Zealand regions
-    if(country === 'NZ') {
-        state.innerHTML = '';
-        
-        state.options[state.options.length] = new Option('Select state','0');
-        state.options[state.options.length] = new Option('Northland', 'NTH');
-        state.options[state.options.length] = new Option('Auckland', 'ACK');
-        state.options[state.options.length] = new Option('Waikato', 'WAI');
-        state.options[state.options.length] = new Option('Bay of Plenty', 'BOP');
-        state.options[state.options.length] = new Option('Gisbourne', 'GIS');
-        state.options[state.options.length] = new Option("Hawke's Bay", 'HWB');
-        state.options[state.options.length] = new Option('Taranaki', 'TAR');
-        state.options[state.options.length] = new Option('Manawatū-Whanganui','MAW');
-        state.options[state.options.length] = new Option('Wellington', 'WEL');
-        state.options[state.options.length] = new Option('Tasman','TSM');
-        state.options[state.options.length] = new Option('Nelson', 'NEL');
-        state.options[state.options.length] = new Option('Marlborough', 'MAR');
-        state.options[state.options.length] = new Option('West Coast','WCO');
-        state.options[state.options.length] = new Option('Canterbury', 'CAN');
-        state.options[state.options.length] = new Option('Otago','OTA');
-        state.options[state.options.length] = new Option('Southland', 'STH');
+function stateColors() {
+    if (document.getElementById("state").value == '0') {
+        document.getElementById("state").style.background = '#FF9999';
+    } else {
+        document.getElementById("state").style.background = '#CCFFCC';
     }
 }
 
 function validateForm() {
-    // Declares the variables from the HTML document needed in calculating logic and error
-    var username = document.getElementById("username");
-    var password = document.getElementById("password");
 
-    // Checks if the first and last name fields are empty
-    if (username.style.color == checkColor) {
-        alert("This works!");
+    //This next section gets everything with id "form1"
+
+    var elements = document.getElementById("form1").elements;
+
+    //iteration: go through all of the form elementFromPoint
+
+    for (var i = 0, element; element = elements[i++]; )
+        {
+        // this checks for elementy types, looking in particular for <input> or <select>,
+        // it also checks the bg of an element (red or green).
+
+        if ((element =='[object HTMLInputElement]' || element == '[object HTMLSelectElement]') && (element.style.backgroundColor !='rgb(204, 255, 204)')) {
+            //check for the color picker or submit button..
+
+            if (element.id != 'color' && element.type != 'submit') {
+
+                alert("Some fields are incorrect. Go back, make any necessary changes and try again.");
+                console.log(element.type);
+                return false;
+            }
+        }
+    }
+
+    //To test the color picker NOTE: Hex value this time. You will need to edit the id's
+    //below to match yours.
+
+    if (document.getElementById("color").value != "#000000")
+    {
+        alert("You have selected the incorrect colour in the picker. Please try again.");
+        document.getElementById("color").focus();
         return false;
     }
-    if (password.style.color == checkColor) {
-        alert("This works!");
-        return false;
-    }
-
-    // Alerts the user that their submission was correct.
-    alert("Thank you for your submission.")
-    return true;
+    localStorage.clear();
 }
     
-function validatePostcode() {
-    var state = (document.getElementById("state").value);
-    switch (state.RegExp) {
-        
-    }
-}

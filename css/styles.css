@@ -1,23 +1,193 @@
-.title {
-    font-family: 'Open Sans', sans-serif;
+/*
+    WEB4C3WAP - ASSESSMENT TWO
+    File: form1.html
+    Developed by Bailey CAMP on 29/04/2023
+*/
+
+
+/*
+    Global
+*/
+
+html, body, h1, form, fieldset, legend, p {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #ffffff;
+	color: #000000;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding: 20px;
 }
 
-.paragraph {
-    font-family: 'Open Sans', sans-serif;
+/*
+    Form 1
+*/
+
+form#form1 {
+	background: #9cbc2c;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 20px;
+	width: 400px;
 }
 
-.frm1 {
-    width: 350px;
+form#form1 fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+form#form1 fieldset:last-of-type {
+	margin-bottom: 0;
 }
 
-.frm2 {
-    width: 350px;
+form#form1 legend {
+	color: #384313;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	text-shadow: 0 1px 1px #c0d576;
 }
 
-/* label {
-    padding: 5px;
-} */
+form#form1 label {
+	float: left;
+	font-size: 13px;
+	width: 110px;
+}
+form#form1 fieldset fieldset label {
+	background:none no-repeat left 50%;
+	line-height: 20px;
+	padding: 0 0 0 30px;
+	width: auto;
+}
+form#form1 fieldset fieldset label:hover {
+	cursor: pointer;
+}
 
-input {
-    margin-bottom: 20px;
+form#form1 input:not([type=radio]),
+form#form1 textarea {
+	background: #ffffff;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+form#form1 input:not([type=submit]):focus,
+form#form1 textarea:focus {
+	background: #eaeaea;
+}
+form#form1 input[type=radio] {
+	float: left;
+	margin-right: 5px;
+}
+form#form1 button {
+	background: #384313;
+	border: none;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	border-radius: 20px;
+	color: #ffffff;
+	display: block;
+	font: 18px Georgia, "Times New Roman", Times, serif;
+	letter-spacing: 1px;
+	margin: auto;
+	padding: 7px 25px;
+	text-shadow: 0 1px 1px #000000;
+	text-transform: uppercase;
+}
+form#payment button:hover {
+	background: #1e2506;
+	cursor: pointer;
+}
+
+/*
+    Form 2
+*/
+
+form#form2 {
+	background: #9cbc2c;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 20px;
+	width: 400px;
+}
+
+form#form2 fieldset {
+	border: none;
+	margin-bottom: 10px;
+}
+form#form2 fieldset:last-of-type {
+	margin-bottom: 0;
+}
+
+form#form2 legend {
+	color: #384313;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 10px;
+	text-shadow: 0 1px 1px #c0d576;
+}
+
+form#form1 label {
+	float: left;
+	font-size: 13px;
+	width: 110px;
+}
+form#form2 fieldset fieldset label {
+	background:none no-repeat left 50%;
+	line-height: 20px;
+	padding: 0 0 0 30px;
+	width: auto;
+}
+form#form2 fieldset fieldset label:hover {
+	cursor: pointer;
+}
+
+form#form2 input:not([type=radio]),
+form#form2 textarea {
+	background: #ffffff;
+	border: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+	outline: none;
+	padding: 5px;
+	width: 200px;
+}
+form#form2 input:not([type=submit]):focus,
+form#form2 textarea:focus {
+	background: #eaeaea;
+}
+form#form2 input[type=radio] {
+	float: left;
+	margin-right: 5px;
+}
+form#form2 button {
+	background: #384313;
+	border: none;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	border-radius: 20px;
+	color: #ffffff;
+	display: block;
+	font: 18px Georgia, "Times New Roman", Times, serif;
+	letter-spacing: 1px;
+	margin: auto;
+	padding: 7px 25px;
+	text-shadow: 0 1px 1px #000000;
+	text-transform: uppercase;
+}
+form#form2 button:hover {
+	background: #1e2506;
+	cursor: pointer;
 }

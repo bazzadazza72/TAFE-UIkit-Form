@@ -4,7 +4,7 @@ File: script.js
 Developed by Bailey CAMP on 29/04/2023
 */
 
-var myInterval = setInterval(saveData, 5000);
+var myInterval = setInterval(saveData, 3000);
 
 var checkColor = "#FF9999";
 
@@ -61,7 +61,7 @@ function validatePostCode(formField, errorField) {
         case "QLD":
             var thePattern = new RegExp(/^4[0-9]{3}$/);
             break;
-        case "TAZ":
+        case "TAS":
             var thePattern = new RegExp(/^7[0-9]{3}$/);
             break;
         case "WA":
@@ -96,20 +96,16 @@ function validatePostCode(formField, errorField) {
 
 }
 
-
-
-/*
 function saveData(){  
     var username = document.querySelector("#username").value;   
     var name = document.querySelector("#name").value
     var address = document.querySelector("#address").value;  
     var suburb = document.querySelector("#suburb").value;  
     var city = document.querySelector("#city").value;  
-    var country = document.querySelector("#country").value;  
-    var state = document.querySelector("#state").value; 
-    var website = document.querySelector("#email").value; 
+    var pcode = document.querySelector("#pcode").value; 
+    var email = document.querySelector("#email").value; 
     var phone = document.querySelector("#phone").value;      
-    var email = document.querySelector("#website").value;
+    var website = document.querySelector("#website").value;
     var age = document.querySelector("#age").value;        
     localStorage.setItem('username', username);
     localStorage.setItem('name', name);     
@@ -117,8 +113,8 @@ function saveData(){
     localStorage.setItem('suburb', suburb);  
     localStorage.setItem('email', email);  
     localStorage.setItem('city', city)
-    localStorage.setItem('country', country);  
-    localStorage.setItem('state', state);  
+    localStorage.setItem('pcode', pcode);   
+    localStorage.setItem('email', email);  
     localStorage.setItem('phone', phone)
     localStorage.setItem('website', website);  
     localStorage.setItem('age', age);  
@@ -130,8 +126,8 @@ function retrieveData(){
     var address = localStorage.getItem("address");
     var suburb = localStorage.getItem("suburb");
     var city = localStorage.getItem("city");
-    var country = localStorage.getItem("country");
-    var state = localStorage.getItem("state");
+    var pcode = localStorage.getItem("pcode");
+    var email = localStorage.getItem("email");
     var phone = localStorage.getItem("phone");
     var website = localStorage.getItem("website");
     var age = localStorage.getItem("age");
@@ -140,13 +136,12 @@ function retrieveData(){
     document.querySelector("#address").value = address;  
     document.querySelector("#suburb").value = suburb;  
     document.querySelector("#city").value = city;  
-    document.querySelector("#country").value = country;  
-    document.querySelector("#state").value = state;  
+    document.querySelector("#pcode").value = pcode;  
+    document.querySelector("#email").value = email;    
     document.querySelector("#phone").value = phone;
     document.querySelector("#website").value = website;   
     document.querySelector("#age").value = age;   
 }
-*/
 
 function changeState() {
     // store a reference to country and state select lists
@@ -176,11 +171,7 @@ function changeState() {
 }
 
 function stateColors() {
-    if (document.getElementById("state").value == '0') {
-        document.getElementById("state").style.background = '#FF9999';
-    } else {
-        document.getElementById("state").style.background = '#CCFFCC';
-    }
+    document.getElementById("state").style.background = '#CCFFCC';
 }
 
 function validateForm() {

@@ -1,11 +1,18 @@
+<!--
+WEB4C3WAP - ASSESSMENT TWO
+File: form1.html
+Developed by Bailey CAMP on 29/04/2023
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>HTML Form</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-        <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
-        <script type="text/javascript" src="./script.js"> </script> 
+        <link rel="stylesheet" type="text/css" href="./css/styles.css">
+        <script src="./js/script.js"> </script>
+        <script src="./js/jscolor.js"> </script> 
 
     </head>
     <body onload="retrieveData()">
@@ -63,10 +70,10 @@
                 <span id="websiteError" style="display: none;"></span>
                 <br><label for="age">Age:</label>
                 <input type="text" required pattern="[0-9]{1,3}" id="age" name="age" title="Enter your age. It needs to be at least 1 digit and up to 3 digits." onblur="return validateErrors('age', 'ageError')"><br>
-                <span id="ageError" style="display: none;"></span>
+                <span id="ageError" style="display: none;"></span><br>
                 <p>
                     Spam check:<br>
-                    What colour is black? (choose a colour): </p><input type="color" id="color" value="#740505">
+                    What colour is black? (choose a colour): <input name="color" id="color" data-jscolor="{value:'#964B00'}">
                 </p>
             </fieldset><br>
             <input type="submit" value="Submit">
